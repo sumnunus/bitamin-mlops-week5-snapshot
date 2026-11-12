@@ -17,6 +17,8 @@ jobs:
     needs: verify
     if: vars.ENABLE_DOCKERHUB_PUSH == 'true'
     runs-on: ubuntu-24.04
+    outputs:
+      image_sha: ${{ steps.revision.outputs.sha }}
     env:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -63,3 +65,31 @@ jobs:
         run: |
           docker logs week5-published || true
           docker rm -f week5-published || true
+
+  verify-published:
+    needs: publish
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm]
+    runs-on: ${{ matrix.runner }}
+    env:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      IMAGE_NAME: ${{ vars.DOCKERHUB_IMAGE || 'bitamin-mlops-week5' }}
+      IMAGE_SHA: ${{ needs.publish.outputs.image_sha }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: solution
+      - name: Pull published image on native CPU
+        run: |
+          test -n "$IMAGE_SHA"
+          docker pull "$DOCKERHUB_USERNAME/$IMAGE_NAME:$IMAGE_SHA"
+          docker run -d --name week5-delivered -p 8000:8000 "$DOCKERHUB_USERNAME/$IMAGE_NAME:$IMAGE_SHA"
+      - name: Verify delivered model via real HTTP
+        run: python3 week5/smoke.py
+      - name: Published container logs and cleanup
+        if: always()
+        run: |
+          docker logs week5-delivered || true
+          docker rm -f week5-delivered || true
