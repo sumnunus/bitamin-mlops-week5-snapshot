@@ -2,7 +2,7 @@
 
 **목표:** 실제 고객 이탈 예측 API를 Docker 이미지로 만들고 push → 테스트 → 빌드 → Docker Hub 업로드를 연결합니다. 실습 50분. 원격 서버 자동 교체는 선택 확장입니다.
 
-조별 기존 저장소에 [공통 출발 코드 가져오기](../docs/IMPORT.md)를 먼저 완료하세요. 모든 명령은 **저장소 루트**에서 실행합니다. 루트의 이전 주차 Dockerfile·requirements.txt를 사용하지 않습니다.
+조별 기존 저장소에 [공통 출발 코드 가져오기](https://github.com/sumnunus/bitamin-mlops-week5-snapshot/blob/main/docs/IMPORT.md)를 먼저 완료하세요. 모든 명령은 **저장소 루트**에서 실행합니다. 루트의 이전 주차 Dockerfile·requirements.txt를 사용하지 않습니다.
 
 ## 역할 예시
 
