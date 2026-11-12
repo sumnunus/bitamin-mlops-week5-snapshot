@@ -14,7 +14,7 @@ def main():
             with urlopen(base + "/", timeout=3) as response:
                 assert json.load(response) == {"message": "ok"}
             break
-        except (URLError, TimeoutError):
+        except (URLError, TimeoutError, ConnectionError):
             if attempt == 59:
                 raise
             time.sleep(1)
