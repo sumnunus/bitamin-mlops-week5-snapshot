@@ -6,7 +6,7 @@
 
 > 현재 `solution`은 **실습 완성 코드**입니다. 참가자는 [`main`](https://github.com/sumnunus/bitamin-mlops-week5-snapshot/tree/main) 또는 `week5-start`에서 시작하세요. 출발 코드의 테스트 세 개와 Dockerfile을 완성한 결과를 이 브랜치에서 확인할 수 있습니다. Docker Hub publish에는 자기 저장소 Secrets와 Variable이 필요합니다.
 
-## 참가자 시작 순서
+## 실습 시작 순서
 
 1. **각 조의 기존 저장소에 가져오기:** [가져오기 가이드](docs/IMPORT.md)를 따릅니다. 이 스냅샷 저장소에 직접 push하지 않습니다.
 2. **로컬 실습:** [50분 실습 가이드](week5/README.md)의 STEP 0~4를 진행합니다.
@@ -48,7 +48,6 @@ py -3.13 -m venv .venv
 .github/workflows/verify-snapshot.yml  # 배포본 자체 검증용, 참가자가 가져갈 필요 없음
 .dockerignore                        # 빌드 컨텍스트는 저장소 루트
 docs/IMPORT.md                       # 각 조 저장소로 가져오기
-docs/INSTRUCTOR.md                   # 발표조 리허설·범위·체크포인트
 docs/PROVENANCE.md                   # 원본 코드·모델 출처와 SHA256
 week4/                               # 공통 FastAPI·입력 스키마·학습 모델·의존성
 week5/
