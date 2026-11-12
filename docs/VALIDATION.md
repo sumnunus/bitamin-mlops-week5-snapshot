@@ -27,6 +27,17 @@
 - [참가자 완성 워크플로 test·build 성공](https://github.com/sumnunus/bitamin-mlops-week5-snapshot/actions/runs/43163952525) — solution은 기본 브랜치가 아니므로 publish는 의도적으로 skipped.
 - [실패 시 차단 시연](https://github.com/sumnunus/bitamin-mlops-week5-snapshot/actions/runs/43163791202) — 이 실행의 failure는 의도된 테스트이며, 임시 시연 브랜치는 정리했습니다.
 
-Docker Hub 업로드는 토큰 등록 후 별도 리허설 결과를 기록합니다. Secrets가 없거나 조건에 의해 건너뛴 업로드는 성공으로 기록하지 않습니다.
+## Docker Hub 전체 리허설 — 성공
+
+- [전체 리허설 실행](https://github.com/sumnunus/bitamin-mlops-week5-snapshot/actions/runs/43165450034): 7개 job 모두 성공.
+- Windows·macOS API 테스트, Linux 두 CPU의 테스트·Docker 검증 후 레지스트리 업로드까지 연결했습니다.
+- [공개 Docker Hub 이미지](https://hub.docker.com/r/sumnunus/bitamin-mlops-week5/tags): `latest`와 `4177575ea01f20b6ee6d973b79c2a56f9009b220` 태그.
+- Manifest digest: `sha256:5eda4e67e1ab70663ef7fa4bddb66fd97e58f9a4dc8b64f4b949bb9afe9cbe81`.
+- 플랫폼: `linux/amd64`, `linux/arm64`.
+- 업로드 후 두 CPU의 별도 러너가 SHA 태그 이미지를 실제로 pull·run하고 GET `/`·POST `/predict`를 검증했습니다.
+- 양쪽 CPU의 응답: `{"churn": 1, "churn_probability": 0.80412358901082}`.
+- 첫 멀티 플랫폼 빌드·업로드는 약 4분 35초, 전체 검증은 약 7분이 걸렸습니다. 네트워크·러너 대기 시간에 따라 달라질 수 있습니다.
+
+단순 빌드 성공이나 skipped 업로드를 성공으로 대체하지 않았습니다. 이번 범위는 이미지 자동 전달과 실제 실행 확인이며, 원격 운영 서버의 컨테이너 자동 교체는 포함하지 않습니다.
 
 발표 준비 중 발견한 Docker 시작 직후 연결 초기화 문제는 공통 `smoke.py`에 시작 대기를 추가해 수정했습니다. `week5-*` 태그에도 배포 전 수정을 반영했습니다. 최종 배포 이후 태그를 이동하지 않고 새 버전으로 수정합니다.
