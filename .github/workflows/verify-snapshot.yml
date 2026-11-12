@@ -10,6 +10,25 @@ permissions:
   contents: read
 
 jobs:
+  compatibility:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [windows-2025, macos-15]
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: solution
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -r week5/requirements-dev.txt
+      - name: Test API on participant OS
+        run: python -m pytest week5/test_main.py -v -W error
+      - name: Verify legacy week4 working directory
+        working-directory: week4
+        run: python -W error -c "from main import app; from fastapi.testclient import TestClient; assert TestClient(app).get('/').json() == {'message':'ok'}"
   verify:
     strategy:
       fail-fast: false
