@@ -4,7 +4,7 @@
 
 4주차에 완성한 고객 이탈 예측 FastAPI를 Docker 이미지로 만들고, 코드 push 시 테스트 → 빌드 → Docker Hub 업로드까지 자동화합니다. 실제 학습 모델이 포함되어 있으며 W&B 로그인·재학습은 필요 없습니다.
 
-> `main`은 **실습 출발 코드**입니다. API는 실행되지만 `test_main.py`의 TODO 세 개와 Dockerfile은 직접 완성해야 합니다. 출발 코드에서 pytest가 세 개 실패하는 것은 의도된 상태입니다. 완성본은 [`solution`](https://github.com/sumnunus/bitamin-mlops-week5-snapshot/tree/solution)입니다.
+> 현재 `solution`은 **실습 완성 코드**입니다. 참가자는 [`main`](https://github.com/sumnunus/bitamin-mlops-week5-snapshot/tree/main) 또는 `week5-start`에서 시작하세요. 출발 코드의 테스트 세 개와 Dockerfile을 완성한 결과를 이 브랜치에서 확인할 수 있습니다. Docker Hub publish에는 자기 저장소 Secrets와 Variable이 필요합니다.
 
 ## 참가자 시작 순서
 
