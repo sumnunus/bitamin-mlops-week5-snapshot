@@ -1,0 +1,13 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+.env
+.env.*
+.DS_Store
+.vscode/
+.idea/
+# 다른 주차의 ignore 규칙으로도 공통 모델이 빠지지 않게 유지
+!week4/churn_model.joblib
