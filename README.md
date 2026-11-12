@@ -80,3 +80,13 @@ week5/
 `git push → pytest → Docker Build → Docker Hub Push`까지 자동화합니다. Docker Hub의 이미지를 PC에서 `pull`·`run`하여 서비스 실행을 확인합니다. 원격 운영 서버의 컨테이너를 자동 교체하는 단계는 선택 확장입니다.
 
 출발 모델은 5조의 4주차 결과물로 통일합니다. 각 조 모델을 쓰는 확장은 공통 모델로 전 과정을 통과한 뒤 진행하세요. 모델마다 학습 환경·스키마가 달라질 수 있습니다.
+
+## 배포 전 검증 완료
+
+Windows·macOS의 API 테스트, Linux amd64·arm64의 Docker 빌드, Docker Hub 업로드, 업로드한 이미지의 두 CPU 실제 예측까지 검증했습니다.
+
+- [전체 성공 실행](https://github.com/sumnunus/bitamin-mlops-week5-snapshot/actions/runs/43165450034)
+- [검증 기록](docs/VALIDATION.md)
+- [발표조 예시 이미지](https://hub.docker.com/r/sumnunus/bitamin-mlops-week5/tags)
+
+각 조는 자기 Docker Hub namespace에 이미지를 올리고 자기 Actions 실행을 제출합니다. 발표조의 이미지 링크는 참고용입니다.

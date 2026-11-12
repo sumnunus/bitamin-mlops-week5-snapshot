@@ -60,6 +60,18 @@ git switch --track origin/feature/week5-cicd
 
 `DOCKERHUB_USERNAME`은 표시 이름·이메일이 아닌 Docker ID입니다. 토큰은 해당 계정의 Read & Write 권한이 필요합니다. GitHub 저장소 Secrets는 개인 연습 저장소나 원본 스냅샷에서 자동 복사되지 않습니다.
 
+### 토큰 값을 기억하지 못할 때
+
+기존 토큰이 활성 상태이고 만료되지 않았으며 팀 Docker ID의 Read & Write 권한이라면 재사용할 수 있습니다. 단, Docker Hub와 GitHub Secrets에서는 이미 저장한 토큰 값을 다시 조회할 수 없습니다. 값을 보관하지 않았다면 새로 발급합니다.
+
+1. Docker Hub에 팀 계정으로 로그인 → 프로필 → Account settings → Personal access tokens를 엽니다.
+2. Generate new token → 설명은 `week5-github-actions`, 만료일은 발표·제출 기간을 포함하도록 정합니다. 예: 30일.
+3. 이미지 저장소 권한을 **Read & Write**로 선택하고 Generate를 누릅니다.
+4. 생성 직후 표시되는 값을 복사하여 자기 조 GitHub 저장소의 `DOCKERHUB_TOKEN` Secret에 붙여넣습니다.
+5. Secret 이름 목록에 등록된 것을 확인합니다. 토큰 값은 채팅·README·캡처에 넣지 않습니다.
+
+발급 화면을 닫으면 값을 다시 볼 수 없으므로 필요한 경우 자격 증명 관리자에 보관합니다. [Docker 공식 발급 안내](https://docs.docker.com/security/access-tokens/personal-access-tokens/)
+
 `ENABLE_DOCKERHUB_PUSH`가 없으면 `publish` job은 **skipped**입니다. 이 상태는 이미지 업로드 체크포인트 통과가 아닙니다. 두 Secret과 Variable을 등록한 뒤 기본 브랜치에 새 커밋을 push하거나 Actions의 **Run workflow**를 기본 브랜치에서 실행하세요.
 
 기존 저장소에서 Actions가 꺼져 있으면 Actions 탭 또는 Settings → Actions에서 활성화합니다. Fork를 사용하는 경우에도 Actions 활성화와 자기 저장소 Secrets 등록은 직접 해야 합니다.

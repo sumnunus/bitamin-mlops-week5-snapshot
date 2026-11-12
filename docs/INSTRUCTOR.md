@@ -31,7 +31,7 @@ Secret 값은 GitHub 웹 Settings에서 등록합니다. GitHub의 기존 Secret
 | Variable | `ENABLE_DOCKERHUB_PUSH` | `true` |
 | Variable | `DOCKERHUB_IMAGE` | `bitamin-mlops-week5` |
 
-Docker Hub 공개 저장소를 먼저 만든 뒤 Actions → **Rehearse Docker Hub (instructor)** → Run workflow (`main`)를 실행합니다. test·docker·publish 성공과 양쪽 CPU 아키텍처를 확인합니다. 운영 증거는 [검증 기록](VALIDATION.md)에 연결합니다.
+Docker Hub 공개 저장소를 먼저 만든 뒤 Actions → **Rehearse Docker Hub (instructor)** → Run workflow (`main`)를 실행합니다. `verify`의 운영체제·CPU별 검증, `publish`, 두 CPU의 `verify-published`까지 모두 성공했는지 확인합니다. 마지막 단계는 업로드된 SHA 태그 이미지를 각 CPU에서 실제로 pull하고 예측 API를 호출합니다. 운영 증거는 [검증 기록](VALIDATION.md)에 연결합니다.
 
 ## 실패 시 차단 시연
 
